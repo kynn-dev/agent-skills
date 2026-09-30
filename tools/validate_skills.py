@@ -70,6 +70,7 @@ def main() -> int:
 
         name = frontmatter.get("name", "")
         description = frontmatter.get("description", "")
+        lowered_description = description.lower()
         if name != skill_dir.name:
             fail(f"{skill_dir.name}: frontmatter name is {name!r}")
             failures += 1
@@ -79,10 +80,10 @@ def main() -> int:
         if not description:
             fail(f"{skill_dir.name}: missing description")
             failures += 1
-        if "use when" not in description.lower():
-            fail(f"{skill_dir.name}: description should contain a trigger boundary ('Use when')")
+        if "use when" not in lowered_description and "use for" not in lowered_description:
+            fail(f"{skill_dir.name}: description should contain a trigger boundary ('Use when' or 'Use for')")
             failures += 1
-        if "do not use" not in description.lower() and "exclude" not in description.lower():
+        if "do not use" not in lowered_description and "exclude" not in lowered_description:
             fail(f"{skill_dir.name}: description should contain an exclusion boundary")
             failures += 1
 
