@@ -83,8 +83,8 @@ def main() -> int:
         if "use when" not in lowered_description and "use for" not in lowered_description:
             fail(f"{skill_dir.name}: description should contain a trigger boundary ('Use when' or 'Use for')")
             failures += 1
-        if "do not use" not in lowered_description and "exclude" not in lowered_description:
-            fail(f"{skill_dir.name}: description should contain an exclusion boundary")
+        if not any(marker in lowered_description for marker in ("do not use", "do not ", "exclude", "never ")):
+            fail(f"{skill_dir.name}: description should contain an explicit exclusion/negative boundary")
             failures += 1
 
         for match in LINK_RE.finditer(text):
