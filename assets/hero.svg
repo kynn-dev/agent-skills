@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Agent Skills</title>
+  <desc id="desc">A captain routes bounded work through a structured router to specialized workers, deterministic validation, and independent review.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#080b14"/>
+      <stop offset="0.52" stop-color="#111827"/>
+      <stop offset="1" stop-color="#071d1a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#65d1ff"/>
+      <stop offset="1" stop-color="#61f2b0"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="560" rx="32" fill="url(#bg)"/>
+  <circle cx="1050" cy="90" r="180" fill="#20d7a7" opacity="0.08"/>
+  <circle cx="120" cy="520" r="220" fill="#49a8ff" opacity="0.07"/>
+
+  <text x="72" y="108" fill="#f8fafc" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="62" font-weight="750">Agent Skills</text>
+  <text x="72" y="153" fill="#a9b7c9" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="22">Adaptive routing · bounded context · deterministic evidence · targeted review</text>
+
+  <g font-family="Inter,Segoe UI,Arial,sans-serif">
+    <rect x="72" y="230" width="210" height="112" rx="20" fill="#121a2a" stroke="#3d526e"/>
+    <text x="96" y="270" fill="#91a4bd" font-size="15" font-weight="700">PRIMARY</text>
+    <text x="96" y="307" fill="#f8fafc" font-size="25" font-weight="700">Captain</text>
+    <text x="96" y="331" fill="#8da2ba" font-size="14">plan · integrate · override</text>
+
+    <rect x="372" y="230" width="210" height="112" rx="20" fill="#10231f" stroke="#2b8069"/>
+    <text x="396" y="270" fill="#78d8bc" font-size="15" font-weight="700">STRUCTURED</text>
+    <text x="396" y="307" fill="#f8fafc" font-size="25" font-weight="700">Router</text>
+    <text x="396" y="331" fill="#8fbaa9" font-size="14">difficulty · risk · context</text>
+
+    <rect x="674" y="201" width="190" height="80" rx="18" fill="#131b2c" stroke="#415677"/>
+    <text x="696" y="233" fill="#8ca2bd" font-size="13" font-weight="700">LIGHT</text>
+    <text x="696" y="260" fill="#f8fafc" font-size="21" font-weight="700">Worker</text>
+
+    <rect x="674" y="300" width="190" height="80" rx="18" fill="#17182a" stroke="#635a90"/>
+    <text x="696" y="332" fill="#aaa0db" font-size="13" font-weight="700">SPECIALIST</text>
+    <text x="696" y="359" fill="#f8fafc" font-size="21" font-weight="700">Worker</text>
+
+    <rect x="948" y="230" width="180" height="112" rx="20" fill="#1d1b13" stroke="#8c7740"/>
+    <text x="972" y="270" fill="#d6bd75" font-size="15" font-weight="700">EVIDENCE</text>
+    <text x="972" y="307" fill="#f8fafc" font-size="23" font-weight="700">Review</text>
+    <text x="972" y="331" fill="#b8ab87" font-size="14">only when justified</text>
+  </g>
+
+  <g fill="none" stroke="url(#accent)" stroke-width="4" stroke-linecap="round" filter="url(#glow)" opacity="0.9">
+    <path d="M282 286 H360"/>
+    <path d="M582 286 H630 Q650 286 650 261 H674"/>
+    <path d="M582 286 H630 Q650 286 650 340 H674"/>
+    <path d="M864 241 H910 Q928 241 928 274 H948"/>
+    <path d="M864 340 H910 Q928 340 928 307 H948"/>
+  </g>
+
+  <g fill="#70efc2">
+    <circle cx="350" cy="286" r="5"><animate attributeName="opacity" values=".2;1;.2" dur="1.8s" repeatCount="indefinite"/></circle>
+    <circle cx="635" cy="286" r="5"><animate attributeName="opacity" values="1;.2;1" dur="2.1s" repeatCount="indefinite"/></circle>
+    <circle cx="920" cy="286" r="5"><animate attributeName="opacity" values=".25;1;.25" dur="2.4s" repeatCount="indefinite"/></circle>
+  </g>
+
+  <text x="72" y="468" fill="#dbe7f3" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="18">Context is a budget, not a convenience.</text>
+  <text x="72" y="500" fill="#79e7c3" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="18">Use the cheapest capable worker. Spend intelligence where it changes the outcome.</text>
+</svg>
