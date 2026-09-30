@@ -7,6 +7,24 @@ description: Use when creating, evaluating, or revising an agent skill, includin
 
 Create skills that are discoverable, narrowly routed, operationally useful, and maintainable. Treat a skill as a small contract: its description routes requests, its body defines the common workflow, and optional resources supply only the detail needed for a specific mode.
 
+## Operational contract
+
+### Objective
+
+Turn a recurring agent behavior into a reusable, testable skill with a discriminating trigger, explicit exclusions, a compact operational contract, progressive disclosure, and realistic activation evidence. The result should be easier to route and maintain than a giant one-off prompt.
+
+### Expected inputs
+
+Start from representative user requests, the desired observable outcome, nearby requests that must not trigger the skill, allowed side effects, risk/authorization boundaries, host capabilities, existing skill/package conventions, and any public/private packaging constraints.
+
+### Required outputs
+
+Produce or revise the skill's `SKILL.md`, the human-facing `README.md` when the package requires one, justified references/scripts only when needed, positive and exclusion activation cases, validation evidence, and a handoff that records assumptions, limitations, and unresolved gaps.
+
+### Definition of done
+
+A skill is done only when its directory/frontmatter are valid, the human and agent documents agree on scope, trigger and exclusion cases behave as intended, local links/resources resolve, scripts or references have real callers, public-safety constraints pass, and structural validation is clearly distinguished from behavioral evaluation.
+
 ## Authoring contract
 
 Before writing, record the intended user request, desired observable outcome, in-scope actions, exclusions, side effects, risk boundary, and the host capabilities the skill may rely on. Preserve the user's requested location and authorization. Do not install or activate a skill globally as an implicit part of authoring.
@@ -26,7 +44,19 @@ An ambiguous case should route to clarification or a safer boundary rather than 
 
 ## Required file and frontmatter shape
 
-Each skill is a directory with an uppercase `SKILL.md`.
+In this package, every public skill directory contains both a human guide and an agent contract:
+
+```text
+.agents/skills/<skill-name>/
+├── README.md   # human-facing explanation
+├── SKILL.md    # executable agent contract
+├── references/ # optional, only when progressive disclosure helps
+└── scripts/    # optional, only when deterministic execution helps
+```
+
+Other hosts may only require `SKILL.md`; follow the host's packaging contract. When working in this repository, `README.md` and `SKILL.md` are both required and must not become competing sources of truth.
+
+Minimum `SKILL.md` frontmatter:
 
 ```yaml
 ---
@@ -41,6 +71,7 @@ Apply these checks:
 - `description` contains a real trigger boundary and useful exclusion;
 - keep only supported optional frontmatter fields;
 - put purpose, workflow, constraints, outputs, and validation in the Markdown body rather than hiding them in metadata;
+- keep the human README explanatory and link it to `SKILL.md` as the operational source of truth;
 - preserve unrelated established frontmatter when revising an existing skill.
 
 ## Progressive disclosure
@@ -63,6 +94,8 @@ Use imperative, evidence-oriented instructions. Include only decisions that chan
 4. distinguish `PASS`, `FAIL`, `NOT_RUN`, and `BLOCKED_EXTERNAL`;
 5. define a stable output/handoff contract when another worker or skill consumes the result;
 6. preserve existing architecture and user scope.
+
+For this package, include the operational-contract summary headings `### Objective`, `### Expected inputs`, `### Required outputs`, and `### Definition of done` so another agent can understand the contract before reading the full workflow.
 
 Avoid generic advice that the host already enforces, repetitive policy text, speculative edge cases, and fixed steps where multiple safe approaches are equivalent.
 
@@ -92,6 +125,7 @@ The validator proves structural constraints only. Also verify that:
 
 - every relative Markdown link inside the skill resolves;
 - the description has both a discriminating trigger and an exclusion;
+- the human README and agent contract agree on purpose and scope;
 - references/scripts are justified and linked;
 - activation cases cover positive and exclusion prompts;
 - no secret, cookie, key, token, or environment value was read, printed, or persisted;

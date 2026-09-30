@@ -7,6 +7,24 @@ description: Design visual direction from explicit brand and product evidence, s
 
 Make visual decisions that are accountable to evidence. A brand-aware result is not a guessed palette, a fashionable style, or a familiar SaaS template; it is a clear record of what the source establishes, what the designer proposes, and what remains unknown.
 
+## Operational contract
+
+### Objective
+
+Translate real brand and product evidence into a coherent visual direction without turning guesses, trends, or personal taste into brand facts. Preserve confirmed identity, make reversible creative choices explicit, and keep unknowns/conflicts visible until resolved.
+
+### Expected inputs
+
+Use the approved brief, brand guidelines, existing product/repository surfaces, design tokens, logo/assets, typography/color evidence, imagery/iconography, product task, responsive/accessibility constraints, and any explicit user authorization to change established identity.
+
+### Required outputs
+
+Return the evidence boundary, a compact `CONFIRMED`/`CREATIVE DECISION`/`UNKNOWN`/`CONFLICT` record, the proposed direction and rationale, do-not-change constraints, unresolved questions, responsive/accessibility implications, and implementation/review evidence actually inspected or executed.
+
+### Definition of done
+
+The design direction is done when every material identity claim is traceable to inspected evidence or labeled as a reversible proposal, conflicts are not silently arbitrated, established brand elements are preserved unless change was authorized, and any statement such as “on-brand” is scoped to the evidence that was actually reviewed.
+
 ## Trigger and exclusion boundary
 
 Use this skill when a request asks to:

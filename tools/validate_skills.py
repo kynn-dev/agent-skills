@@ -33,6 +33,22 @@ PRIVATE_MARKERS = (
     "liech" + "parfums",
     "rm-" + "pneus",
 )
+HUMAN_DOC_REQUIRED_HEADINGS = (
+    "## What this skill does",
+    "## When to use it",
+    "## How it works",
+    "## Expected inputs",
+    "## Expected results",
+    "## Limitations",
+    "## Agent contract",
+)
+AGENT_DOC_REQUIRED_HEADINGS = (
+    "## Operational contract",
+    "### Objective",
+    "### Expected inputs",
+    "### Required outputs",
+    "### Definition of done",
+)
 SKIP_DIRS = {
     ".git",
     ".venv",
@@ -106,6 +122,35 @@ def check_local_links(path: Path, text: str) -> int:
             continue
         if not target.exists():
             fail(f"{path.relative_to(ROOT)}: broken local link {rel!r}")
+            failures += 1
+    return failures
+
+
+def validate_human_doc(skill_dir: Path) -> int:
+    failures = 0
+    readme = skill_dir / "README.md"
+    if not readme.is_file():
+        fail(f"{skill_dir.name}: missing human README.md")
+        return 1
+
+    text = readme.read_text(encoding="utf-8")
+    if "SKILL.md" not in text:
+        fail(f"{skill_dir.name}: README.md must link to the agent contract in SKILL.md")
+        failures += 1
+
+    for heading in HUMAN_DOC_REQUIRED_HEADINGS:
+        if heading not in text:
+            fail(f"{skill_dir.name}: README.md missing required heading {heading!r}")
+            failures += 1
+
+    return failures
+
+
+def validate_agent_doc(skill_dir: Path, text: str) -> int:
+    failures = 0
+    for heading in AGENT_DOC_REQUIRED_HEADINGS:
+        if heading not in text:
+            fail(f"{skill_dir.name}: SKILL.md missing required heading {heading!r}")
             failures += 1
     return failures
 
@@ -232,6 +277,9 @@ def main() -> int:
             )
             failures += 1
 
+        failures += validate_agent_doc(skill_dir, text)
+        failures += validate_human_doc(skill_dir)
+
     failures += validate_package(skill_names)
 
     for path in iter_public_text_files():
@@ -260,7 +308,10 @@ def main() -> int:
         print(f"\n{failures} validation failure(s).")
         return 1
 
-    print(f"PASS: {len(skill_dirs)} public skills validated; repository-wide public checks passed.")
+    print(
+        f"PASS: {len(skill_dirs)} public skills validated with human + agent docs; "
+        "repository-wide public checks passed."
+    )
     return 0
 
 

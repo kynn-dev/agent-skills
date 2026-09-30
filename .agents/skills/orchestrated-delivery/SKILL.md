@@ -7,6 +7,24 @@ description: Use when a bounded software change needs coordinated workers, indep
 
 Run a bounded change from repository audit through an explicit integration and publication decision. Keep the primary agent accountable for scope, architecture, integration, evidence, and authorization; use workers only for isolated, verifiable work units.
 
+## Operational contract
+
+### Objective
+
+Coordinate a bounded engineering change from audit to integration without letting delegation blur ownership, evidence, or authorization. Workers may implement isolated nodes, but the primary agent owns the plan, exact diff, aggregate validation, review handoff, integration, and any decision to perform an external effect.
+
+### Expected inputs
+
+The workflow expects a concrete request with observable acceptance criteria, repository/worktree state, applicable instructions, known risk boundaries, allowed paths or interfaces, available validation tooling, and the user's authorization boundary for commit/push/merge/deploy/release or production mutation.
+
+### Required outputs
+
+Produce an audit record, bounded DAG/work orders, worker evidence, an integrated diff, proportional validation states, independent review when required, any review-driven delta and revalidation, and an explicit external-effects record. Preserve pre-existing work and distinguish it from task changes.
+
+### Definition of done
+
+The delivery is complete only when all required nodes are resolved, the exact final diff has been inspected, acceptance-relevant validation is explicit, required independent review is `APPROVE`, unresolved risks are surfaced, and no external effect exceeds the user's authorization. A worker's PASS or one green command is never the overall completion gate.
+
 ## Ownership and operating boundary
 
 - **Primary owner:** establishes scope and acceptance criteria, reads repository instructions, owns the plan/DAG, assigns work, inspects every worker diff, integrates changes, runs aggregate checks, requests independent review, and makes the final release decision.

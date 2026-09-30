@@ -7,6 +7,24 @@ description: Use when verifying an engineering change or review to choose propor
 
 Use this skill as the evidence gate between a change and a completion claim. Validation is proportional to the affected surface: a documentation-only change needs structural and link checks, while a security-sensitive runtime change may require focused tests, static analysis, and an authorized runtime check. The goal is a defensible result, not a ritual command.
 
+## Operational contract
+
+### Objective
+
+Map every acceptance-relevant completion claim to fresh evidence that is strong enough for that claim and no stronger. Choose proportional checks from the repository's real tooling, inspect the exact final diff, and preserve the distinction between static, local runtime, remote, and production evidence.
+
+### Expected inputs
+
+The workflow expects the original request and acceptance criteria, baseline/worktree state, exact changed paths or diff, repository tooling and test commands, affected risk surface, relevant environment/identity boundaries, and any requested or mandatory checks.
+
+### Required outputs
+
+Return a claim-to-evidence matrix with the exact command or evidence source, evidence scope, one of `PASS`/`FAIL`/`NOT_RUN`/`BLOCKED_EXTERNAL`, concise result details, inspected files/diff scope, preserved unrelated changes, external blockers, residual risk, and the next action when the evidence is incomplete.
+
+### Definition of done
+
+Verification is complete only when every acceptance-relevant claim is covered by fresh evidence or an explicit limiting state, the final tested state matches the final diff, no required failure/blocker is hidden, and the overall completion statement stays within the scope actually proven.
+
 ## Non-negotiable invariant
 
 > No completion claim without fresh evidence for the acceptance criteria and an inspected diff.

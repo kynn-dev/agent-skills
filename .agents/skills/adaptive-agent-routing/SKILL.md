@@ -9,6 +9,24 @@ Route heterogeneous work to the cheapest capable worker with the minimum suffici
 
 This skill complements `orchestrated-delivery`: use adaptive routing to choose workers and context for DAG nodes, then use the delivery skill's validation, independent review, and release gates for integration and publication.
 
+## Operational contract
+
+### Objective
+
+Turn a heterogeneous goal into proportionately routed execution: each bounded node gets the least expensive capable worker, the minimum sufficient context, safe parallelism, deterministic checks, and only as much independent review as its residual risk justifies. The captain keeps repository semantics, integration, and authorization authority.
+
+### Expected inputs
+
+The routing workflow expects a bounded node descriptor with the objective, observable acceptance criteria, likely owning files or interfaces, dependencies, invariants, prohibited side effects, risk/blast-radius/reversibility signals, available deterministic checks, and the capability tiers actually available. Do not send secrets, an unfiltered repository dump, or unrelated conversation history to the router.
+
+### Required outputs
+
+For each routed node, produce an auditable decision containing task class, difficulty, risk, blast radius, reversibility, context scope/budget, worker capability tier, specialist role when needed, parallelism decision, deterministic-validation expectation, review route, router confidence when available, and the captain's accept/override/escalation state. The captain must also materialize the selected context policy into a concrete worker packet.
+
+### Definition of done
+
+A routed node is complete only when its route is recorded, the worker received the bounded packet, deterministic validation has an explicit state, residual review need has been resolved, and the captain can integrate or deliberately escalate the result. Unresolved critical ambiguity, missing authority, or conflicting evidence is not a successful route.
+
 ## Operating model
 
 Use four layers:

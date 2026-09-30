@@ -7,6 +7,24 @@ description: Use when designing, implementing, or reviewing substantive UI, inte
 
 Design and implement production-grade interfaces that are distinctive because they are grounded in the product, the existing visual language, and the user's task — not because they accumulate decoration.
 
+## Operational contract
+
+### Objective
+
+Turn a real product task and existing visual evidence into a coherent, implementable interface that works across supported responsive and accessibility states. Distinctiveness must come from product-specific hierarchy, interaction, and visual decisions rather than decorative novelty or a generic template.
+
+### Expected inputs
+
+Use the target route/surface, product task, repository/component system, existing tokens/assets/identity evidence, content and data states, supported viewport classes, interaction constraints, accessibility requirements, performance/device limits, and explicit authorization for any identity-level change.
+
+### Required outputs
+
+Return the design direction, relevant system snapshot, implemented or reviewed UI surface, responsive behavior, accessibility states, motion/3D classification, changed files or components when implementation is in scope, rendered/interaction evidence actually obtained, and any unresolved runtime or content constraints.
+
+### Definition of done
+
+The interface is done when the primary task remains clear and usable across the supported states, established identity is preserved or intentionally changed, responsive/accessibility behavior has explicit evidence, motion complexity is proportionate and safely degraded, and no claim of production readiness, responsiveness, accessibility, or performance exceeds the checks actually performed.
+
 ## Trigger and exclusion boundary
 
 Use this skill when the request asks to design, implement, revise, or review:

@@ -7,6 +7,24 @@ description: Use when conducting an evidence-backed security review of an applic
 
 Use this skill to identify security-relevant trust boundaries, abuse paths, and control gaps without weakening the controls under review. The result is a bounded threat model and evidence-backed findings, not a generic checklist, exploit exercise, or production change.
 
+## Operational contract
+
+### Objective
+
+Produce a bounded threat model and evidence-backed security findings for the authorized scope while preserving the controls being reviewed. The review should explain which assets, actors, entry points, trust boundaries, and invariants matter, then test whether the relevant controls actually protect them without using bypasses as proof.
+
+### Expected inputs
+
+The workflow expects the review scope, architecture or repository evidence, affected identities/roles/tenants, assets and data classes, relevant entry points, configuration/deployment boundaries, available test environments, and the user's authorization boundary for runtime checks. Unknown provider or production behavior must remain explicitly unknown until observed.
+
+### Required outputs
+
+Return the threat model, prioritized abuse paths, findings with severity and confidence, exact evidence class (`STATIC`, `CONTROLLED_RUNTIME`, `REMOTE_RUNTIME`, `PRODUCTION`, or `UNKNOWN`), preconditions/impact/scope, the smallest safe remediation, validation status, and unresolved evidence gaps. Never include secret values or unnecessary personal data in the report.
+
+### Definition of done
+
+The review is complete only when the material trust boundaries in scope have been assessed, findings are tied to concrete evidence, runtime claims do not exceed the environment actually exercised, high-impact unknowns are surfaced, and no conclusion depends on weakening authentication, authorization, tenant isolation, validation, TLS, rate limiting, or deployment controls.
+
 ## Non-negotiable invariant
 
 > Never recommend or perform a bypass of authentication, authorization, tenant isolation, validation, encryption, rate limiting, or deployment controls to make a review easier.

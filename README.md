@@ -51,6 +51,24 @@ The core idea is simple:
 
 ---
 
+## Two layers per skill
+
+Every public skill now has two deliberately different documents:
+
+```text
+.agents/skills/<skill-name>/
+├── README.md   ← human guide
+└── SKILL.md    ← executable agent contract
+```
+
+**`README.md` is for humans.** It explains what the skill is trying to solve, why it exists, when it is useful, how the workflow behaves, what inputs it expects, what a good result looks like, examples, and limitations.
+
+**`SKILL.md` is for agents.** It remains the operational source of truth: trigger/exclusion boundaries, required workflow, invariants, stop conditions, result states, evidence requirements, and handoff contracts.
+
+The two files should agree, but they do not serve the same reader. The README explains the method; `SKILL.md` governs execution.
+
+---
+
 ## Featured skills
 
 <table>
@@ -76,7 +94,7 @@ The router recommends. The captain keeps veto power.
 
 **Best part:** worker routing and reviewer routing are separate decisions.
 
-[Read the skill →](./.agents/skills/adaptive-agent-routing/SKILL.md)
+[Human guide →](./.agents/skills/adaptive-agent-routing/README.md) · [Agent contract →](./.agents/skills/adaptive-agent-routing/SKILL.md)
 
 </td>
 <td width="50%" valign="top">
@@ -95,7 +113,7 @@ It separates:
 
 Useful for landing pages, product copy, UX text, scripts, emails, case studies, and editing that should still sound like the original human.
 
-[Read the skill →](./.agents/skills/human-copywriting/SKILL.md)
+[Human guide →](./.agents/skills/human-copywriting/README.md) · [Agent contract →](./.agents/skills/human-copywriting/SKILL.md)
 
 </td>
 </tr>
@@ -105,17 +123,17 @@ Useful for landing pages, product copy, UX text, scripts, emails, case studies, 
 
 ## The public package
 
-| Skill | What it is for |
-| --- | --- |
-| [`adaptive-agent-routing`](./.agents/skills/adaptive-agent-routing/SKILL.md) | Route workers, context, parallelism, and reviewers according to task difficulty and risk. |
-| [`orchestrated-delivery`](./.agents/skills/orchestrated-delivery/SKILL.md) | Run a bounded multi-agent change from audit → DAG → integration → review → authorized external effects. |
-| [`skill-authoring`](./.agents/skills/skill-authoring/SKILL.md) | Build skills with useful trigger boundaries, progressive disclosure, resources, and activation tests. |
-| [`debugging`](./.agents/skills/debugging/SKILL.md) | Reproduce first, form a falsifiable hypothesis, isolate the boundary, then make the smallest correction. |
-| [`engineering-verification`](./.agents/skills/engineering-verification/SKILL.md) | Turn “looks good” into fresh, scoped evidence with explicit PASS / FAIL / NOT_RUN / BLOCKED_EXTERNAL states. |
-| [`security-review`](./.agents/skills/security-review/SKILL.md) | Threat-model and review auth, tenant isolation, secrets, input/output boundaries, SSRF, supply chain, and deployment without weakening controls. |
-| [`frontend-design`](./.agents/skills/frontend-design/SKILL.md) | Design and implement product-grounded UI with explicit responsive, accessibility, visual-evidence, and specialist-motion/3D boundaries. |
-| [`human-copywriting`](./.agents/skills/human-copywriting/SKILL.md) | Write/edit natural copy while keeping factual claims tied to evidence and preserving voice. |
-| [`brand-aware-design`](./.agents/skills/brand-aware-design/SKILL.md) | Separate confirmed brand evidence from reversible creative decisions, unknowns, and conflicts. |
+| Skill | What it is for | Human docs | Agent contract |
+| --- | --- | --- | --- |
+| `adaptive-agent-routing` | Route workers, context, parallelism, and reviewers according to task difficulty and risk. | [README](./.agents/skills/adaptive-agent-routing/README.md) | [SKILL](./.agents/skills/adaptive-agent-routing/SKILL.md) |
+| `orchestrated-delivery` | Run a bounded multi-agent change from audit → DAG → integration → review → authorized external effects. | [README](./.agents/skills/orchestrated-delivery/README.md) | [SKILL](./.agents/skills/orchestrated-delivery/SKILL.md) |
+| `skill-authoring` | Build skills with useful trigger boundaries, progressive disclosure, resources, and activation tests. | [README](./.agents/skills/skill-authoring/README.md) | [SKILL](./.agents/skills/skill-authoring/SKILL.md) |
+| `debugging` | Reproduce first, form a falsifiable hypothesis, isolate the boundary, then make the smallest correction. | [README](./.agents/skills/debugging/README.md) | [SKILL](./.agents/skills/debugging/SKILL.md) |
+| `engineering-verification` | Turn “looks good” into fresh, scoped evidence with explicit PASS / FAIL / NOT_RUN / BLOCKED_EXTERNAL states. | [README](./.agents/skills/engineering-verification/README.md) | [SKILL](./.agents/skills/engineering-verification/SKILL.md) |
+| `security-review` | Threat-model and review auth, tenant isolation, secrets, input/output boundaries, SSRF, supply chain, and deployment without weakening controls. | [README](./.agents/skills/security-review/README.md) | [SKILL](./.agents/skills/security-review/SKILL.md) |
+| `frontend-design` | Design and implement product-grounded UI with explicit responsive, accessibility, visual-evidence, and specialist-motion/3D boundaries. | [README](./.agents/skills/frontend-design/README.md) | [SKILL](./.agents/skills/frontend-design/SKILL.md) |
+| `human-copywriting` | Write/edit natural copy while keeping factual claims tied to evidence and preserving voice. | [README](./.agents/skills/human-copywriting/README.md) | [SKILL](./.agents/skills/human-copywriting/SKILL.md) |
+| `brand-aware-design` | Separate confirmed brand evidence from reversible creative decisions, unknowns, and conflicts. | [README](./.agents/skills/brand-aware-design/README.md) | [SKILL](./.agents/skills/brand-aware-design/SKILL.md) |
 
 This repository is an **allowlisted public export**. Private project instructions and project-specific brand-direction skills are deliberately not mirrored here.
 
@@ -202,11 +220,15 @@ my-project/
 └── .agents/
     └── skills/
         ├── adaptive-agent-routing/
+        │   ├── README.md
         │   ├── SKILL.md
         │   └── references/
         └── engineering-verification/
+            ├── README.md
             └── SKILL.md
 ```
+
+`SKILL.md` is the file an agent should treat as canonical. Keep `README.md` beside it so maintainers can understand the method without parsing the operational prompt.
 
 ### Clone the whole package
 
@@ -290,6 +312,8 @@ python -B tools/validate_skills.py .
 
 It checks the public package for:
 
+- required `README.md` human documentation and `SKILL.md` agent contracts;
+- required human-guide sections and links back to the canonical agent contract;
 - skill directory / frontmatter name alignment;
 - trigger + exclusion boundaries;
 - broken local links;
@@ -299,7 +323,7 @@ It checks the public package for:
 
 GitHub Actions runs the same validator on pull requests and pushes to `main`.
 
-A green structural validator does **not** prove that a skill routes perfectly. Real activation and behavior still need realistic evaluation cases — which is why [`skill-authoring`](./.agents/skills/skill-authoring/SKILL.md) treats those as a separate gate.
+A green structural validator does **not** prove that a skill routes perfectly. Real activation and behavior still need realistic evaluation cases — which is why [`skill-authoring`](./.agents/skills/skill-authoring/README.md) treats those as a separate gate.
 
 ---
 
@@ -320,7 +344,7 @@ The public package is maintained as an allowlist, not as “copy everything and 
 
 ## Contributing
 
-Contributions are welcome — especially improvements that make a skill easier to route, more evidence-oriented, less wasteful with context, or easier to evaluate.
+Contributions are welcome — especially improvements that make a skill easier to route, more evidence-oriented, less wasteful with context, easier for humans to understand, or easier to evaluate.
 
 Read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a PR.
 

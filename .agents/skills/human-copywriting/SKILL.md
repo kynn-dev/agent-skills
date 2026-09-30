@@ -7,6 +7,24 @@ description: Write or edit clear, human copy while preserving facts, voice, and 
 
 Write copy that sounds like a person with a reason to speak, not a template with adjectives. Preserve the author's facts and voice, make the requested change visible, and keep every material claim traceable to a supplied source or an explicitly marked placeholder.
 
+## Operational contract
+
+### Objective
+
+Produce or edit copy that remains specific, natural, and useful while preserving factual boundaries, voice, intent, and required qualifiers. Creative language may improve rhythm and framing, but it must never create evidence, social proof, authority, urgency, or product capabilities that were not supplied.
+
+### Expected inputs
+
+Use the source text or brief, objective, audience, channel, language, format/length constraints, desired action, approved facts, material claim sources, tone/voice evidence, non-negotiable phrases, and any legal or regulatory qualifiers the user has supplied. Missing evidence must remain visible as a gap.
+
+### Required outputs
+
+Return the requested copy in the requested form, plus only the supporting process that is useful for the task: preserved facts/voice, material source gaps, `[SOURCE NEEDED]` or unknown markers, significant meaning changes, and optional variants with their trade-offs when appropriate.
+
+### Definition of done
+
+The copy is done when every changed material claim is traceable or explicitly provisional, the requested voice and meaning are preserved or intentionally changed, channel/length/format constraints are satisfied, unsupported claims have not been smuggled in through persuasive wording, and any domain approval that did not occur remains `NOT_RUN` rather than being implied.
+
 ## Trigger and exclusion boundary
 
 Use this skill for:

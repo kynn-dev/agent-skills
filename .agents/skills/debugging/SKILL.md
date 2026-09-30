@@ -7,6 +7,24 @@ description: Use when investigating a bug, test failure, incident, performance r
 
 Turn an observable failure into an evidence-backed root-cause finding and, only after that, a narrowly scoped correction.
 
+## Operational contract
+
+### Objective
+
+Convert an observed failure into a defensible root-cause conclusion before changing behavior. When implementation is authorized and justified, apply the smallest correction tied to that cause and prove the original symptom is covered by regression evidence.
+
+### Expected inputs
+
+The workflow expects the symptom, expected behavior, actual behavior, affected scope, environment or version context, a safe reproduction path when available, relevant sanitized evidence, repository/worktree state, and whether the request is diagnosis-only or includes implementation.
+
+### Required outputs
+
+Return reproduction status, labeled `FACT`/`INFERENCE`/`HYPOTHESIS`/`UNKNOWN` evidence, the falsifiable hypothesis and experiment, the isolated failing boundary, root cause with limits, any changed files when implementation is in scope, and regression/static validation results with honest external blockers.
+
+### Definition of done
+
+Diagnosis is done when the root-cause conclusion is supported by evidence or the remaining uncertainty is explicitly bounded. A fix is done only when it is tied to the confirmed cause, the original reproduction is re-run, focused regression evidence covers the symptom, and required unavailable checks remain `NOT_RUN` or `BLOCKED_EXTERNAL` rather than being inferred as PASS.
+
 ## Non-negotiable invariant
 
 > Do not implement a correction before investigating the root cause, and do not present diagnosis as implementation.
