@@ -1,6 +1,6 @@
 {
   "package": "agent-skills",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "canonicalRoot": ".agents/skills",
   "activeSkills": [
     "adaptive-agent-routing",
@@ -10,7 +10,8 @@
     "engineering-verification",
     "security-review",
     "human-copywriting",
-    "brand-aware-design"
+    "brand-aware-design",
+    "frontend-design"
   ],
   "profiles": {
     "core": [
@@ -28,7 +29,14 @@
     ],
     "creative": [
       "human-copywriting",
-      "brand-aware-design"
+      "brand-aware-design",
+      "frontend-design"
+    ],
+    "frontend": [
+      "frontend-design",
+      "brand-aware-design",
+      "human-copywriting",
+      "engineering-verification"
     ],
     "quality": [
       "debugging",
