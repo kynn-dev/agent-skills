@@ -6,14 +6,14 @@
 
   <a href="https://github.com/LiechParfums/agent-skills/actions/workflows/validate-skills.yml"><img alt="Validate skills" src="https://img.shields.io/github/actions/workflow/status/LiechParfums/agent-skills/validate-skills.yml?branch=main&style=for-the-badge&label=skills" /></a>
   <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-61f2b0?style=for-the-badge" /></a>
-  <img alt="Skills" src="https://img.shields.io/badge/public%20skills-8-65d1ff?style=for-the-badge" />
+  <img alt="Skills" src="https://img.shields.io/badge/public%20skills-9-65d1ff?style=for-the-badge" />
   <img alt="Public safe" src="https://img.shields.io/badge/public--safe-allowlist-9b8cff?style=for-the-badge" />
   <a href="https://github.com/LiechParfums/agent-skills/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/LiechParfums/agent-skills?style=for-the-badge&color=f7c948" /></a>
 
   <h3>Reusable agent skills for people who want agents to act less like one giant prompt<br/>and more like a well-run engineering team.</h3>
 
   <p>
-    Adaptive routing · multi-agent orchestration · evidence-first debugging · engineering verification · security review · human copywriting
+    Adaptive routing · multi-agent orchestration · evidence-first debugging · engineering verification · security review · frontend design · human copywriting
   </p>
 </div>
 
@@ -113,6 +113,7 @@ Useful for landing pages, product copy, UX text, scripts, emails, case studies, 
 | [`debugging`](./.agents/skills/debugging/SKILL.md) | Reproduce first, form a falsifiable hypothesis, isolate the boundary, then make the smallest correction. |
 | [`engineering-verification`](./.agents/skills/engineering-verification/SKILL.md) | Turn “looks good” into fresh, scoped evidence with explicit PASS / FAIL / NOT_RUN / BLOCKED_EXTERNAL states. |
 | [`security-review`](./.agents/skills/security-review/SKILL.md) | Threat-model and review auth, tenant isolation, secrets, input/output boundaries, SSRF, supply chain, and deployment without weakening controls. |
+| [`frontend-design`](./.agents/skills/frontend-design/SKILL.md) | Design and implement product-grounded UI with explicit responsive, accessibility, visual-evidence, and specialist-motion/3D boundaries. |
 | [`human-copywriting`](./.agents/skills/human-copywriting/SKILL.md) | Write/edit natural copy while keeping factual claims tied to evidence and preserving voice. |
 | [`brand-aware-design`](./.agents/skills/brand-aware-design/SKILL.md) | Separate confirmed brand evidence from reversible creative decisions, unknowns, and conflicts. |
 
@@ -239,7 +240,14 @@ orchestration
 
 creative
 ├── human-copywriting
-└── brand-aware-design
+├── brand-aware-design
+└── frontend-design
+
+frontend
+├── frontend-design
+├── brand-aware-design
+├── human-copywriting
+└── engineering-verification
 ```
 
 ---
