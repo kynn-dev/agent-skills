@@ -1,0 +1,51 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Node / build tooling
+node_modules/
+.next/
+dist/
+build/
+coverage/
+
+# Generated / runtime artifacts
+artifacts/
+tmp/
+.cache/
+*.log
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local agent/runtime state
+.codex/
+.claude/
+
+# Keep the actual repository skill package tracked.
+!.agents/
+!.agents/skills/
+!.agents/skills/**

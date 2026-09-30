@@ -1,0 +1,52 @@
+{
+  "package": "agent-skills",
+  "version": "1.1.0",
+  "canonicalRoot": ".agents/skills",
+  "activeSkills": [
+    "adaptive-agent-routing",
+    "orchestrated-delivery",
+    "skill-authoring",
+    "debugging",
+    "engineering-verification",
+    "security-review",
+    "human-copywriting",
+    "brand-aware-design",
+    "frontend-design"
+  ],
+  "profiles": {
+    "core": [
+      "adaptive-agent-routing",
+      "orchestrated-delivery",
+      "skill-authoring",
+      "debugging",
+      "engineering-verification",
+      "security-review"
+    ],
+    "orchestration": [
+      "adaptive-agent-routing",
+      "orchestrated-delivery",
+      "engineering-verification"
+    ],
+    "creative": [
+      "human-copywriting",
+      "brand-aware-design",
+      "frontend-design"
+    ],
+    "frontend": [
+      "frontend-design",
+      "brand-aware-design",
+      "human-copywriting",
+      "engineering-verification"
+    ],
+    "quality": [
+      "debugging",
+      "engineering-verification",
+      "security-review"
+    ]
+  },
+  "publicSafety": {
+    "allowlistOnly": true,
+    "privateBrandProfilesExcluded": true,
+    "validator": "tools/validate_skills.py"
+  }
+}
